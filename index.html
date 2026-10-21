@@ -1,0 +1,1010 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LearnSphere | Online Learning Platform</title>
+
+<style>
+:root {
+  --teal: #008C95;
+  --dark: #123B40;
+  --light: #F2FAF9;
+  --white: #FFFFFF;
+  --text: #263B3D;
+  --muted: #637879;
+  --border: #D9EAE8;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background: var(--light);
+  color: var(--text);
+  line-height: 1.6;
+}
+
+header {
+  background: white;
+  padding: 16px 5%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 15px;
+  box-shadow: 0 2px 12px #123b4010;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.logo {
+  font-size: 25px;
+  font-weight: bold;
+  color: var(--teal);
+}
+
+nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+}
+
+nav button {
+  border: none;
+  background: transparent;
+  padding: 8px;
+  cursor: pointer;
+  color: var(--dark);
+  font-weight: bold;
+}
+
+nav button:hover {
+  color: var(--teal);
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  border-radius: 8px;
+  padding: 11px 16px;
+  font-weight: bold;
+  font-size: 14px;
+}
+
+.primary {
+  background: var(--teal);
+  color: white;
+}
+
+.primary:hover {
+  background: var(--dark);
+}
+
+.secondary {
+  background: #DDF4F1;
+  color: var(--dark);
+}
+
+.page {
+  display: none;
+  min-height: 65vh;
+  padding: 45px 7%;
+}
+
+.page.active {
+  display: block;
+}
+
+.hero {
+  background: linear-gradient(120deg, #123B40, #008C95);
+  color: white;
+  padding: 75px 7%;
+  display: grid;
+  grid-template-columns: 1.3fr 1fr;
+  align-items: center;
+  gap: 30px;
+}
+
+.hero h1 {
+  color: white;
+  font-size: clamp(35px, 5vw, 56px);
+  line-height: 1.2;
+  margin-bottom: 20px;
+}
+
+.hero p {
+  margin-bottom: 25px;
+  color: #E0F7F4;
+  font-size: 18px;
+}
+
+.hero-art {
+  text-align: center;
+  font-size: 110px;
+  background: #FFFFFF18;
+  border-radius: 25px;
+  padding: 35px;
+}
+
+h1, h2, h3 {
+  color: var(--dark);
+  margin-bottom: 14px;
+}
+
+.subtitle {
+  color: var(--muted);
+  margin-bottom: 25px;
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  margin: 25px 0;
+}
+
+.card {
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: 15px;
+  padding: 22px;
+  box-shadow: 0 5px 18px #123b4008;
+}
+
+.card p {
+  color: var(--muted);
+  margin-bottom: 12px;
+}
+
+.emoji {
+  font-size: 42px;
+  margin-bottom: 10px;
+}
+
+.card button {
+  margin-top: 10px;
+}
+
+.stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 15px;
+  margin: 25px 0;
+}
+
+.stat {
+  background: white;
+  border: 1px solid var(--border);
+  padding: 20px;
+  border-radius: 12px;
+  text-align: center;
+}
+
+.stat strong {
+  display: block;
+  font-size: 28px;
+  color: var(--teal);
+}
+
+input:not([type="radio"]), select, textarea {
+  display: block;
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #C9DEDC;
+  border-radius: 8px;
+  margin: 7px 0 15px;
+  font: inherit;
+  background: white;
+}
+
+input[type="radio"] {
+  margin: 8px;
+}
+
+textarea {
+  min-height: 110px;
+}
+
+form {
+  background: white;
+  border: 1px solid var(--border);
+  max-width: 650px;
+  padding: 25px;
+  border-radius: 15px;
+}
+
+.lesson {
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 15px;
+  margin: 10px 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.progress {
+  height: 10px;
+  background: #E4EFEE;
+  border-radius: 10px;
+  overflow: hidden;
+  margin: 15px 0;
+}
+
+.progress span {
+  display: block;
+  background: var(--teal);
+  height: 100%;
+  transition: width .3s;
+}
+
+.message {
+  margin-top: 15px;
+  color: #087F67;
+  font-weight: bold;
+}
+
+footer {
+  background: var(--dark);
+  color: white;
+  text-align: center;
+  padding: 30px 15px;
+  margin-top: 30px;
+}
+
+footer h2 {
+  color: white;
+}
+
+footer p {
+  color: #D9F4F1;
+}
+
+footer strong {
+  color: #67E8D9;
+}
+
+footer a {
+  color: #D9F4F1;
+  margin: 0 8px;
+}
+
+@media(max-width: 800px) {
+  header {
+    justify-content: center;
+  }
+
+  .hero {
+    grid-template-columns: 1fr;
+  }
+
+  .cards {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .stats {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media(max-width: 520px) {
+  .cards {
+    grid-template-columns: 1fr;
+  }
+
+  .hero {
+    padding: 45px 5%;
+  }
+
+  .hero-art {
+    font-size: 75px;
+  }
+
+  .page {
+    padding: 30px 5%;
+  }
+
+  nav {
+    justify-content: center;
+  }
+
+  .lesson {
+    align-items: flex-start;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="logo">🎓 LearnSphere</div>
+  <nav>
+    <button onclick="showPage('home')">Home</button>
+    <button onclick="showPage('courses')">Courses</button>
+    <button onclick="showPage('dashboard')">My Learning</button>
+    <button onclick="showPage('quiz')">Quiz</button>
+    <button onclick="showPage('about')">About</button>
+    <button onclick="showPage('contact')">Contact</button>
+    <button onclick="showPage('login')">Sign In</button>
+  </nav>
+</header>
+
+<!-- PAGE 1: HOME -->
+<section id="home" class="page active" style="padding:0">
+  <div class="hero">
+    <div>
+      <h1>Learn New Skills. Build Your Future.</h1>
+      <p>Discover online courses, improve your knowledge, and learn at your own pace with LearnSphere.</p>
+      <button class="primary" onclick="showPage('courses')">Explore Courses →</button>
+      <button class="secondary" onclick="showPage('about')">Learn More</button>
+    </div>
+    <div class="hero-art">💻📚</div>
+  </div>
+
+  <div style="padding:30px 7%">
+    <div class="stats">
+      <div class="stat"><strong>10+</strong>Courses</div>
+      <div class="stat"><strong>12</strong>Pages</div>
+      <div class="stat"><strong>24/7</strong>Learning Access</div>
+      <div class="stat"><strong>100%</strong>Self-Paced</div>
+    </div>
+
+    <h2>Popular Courses</h2>
+    <div id="homeCourses" class="cards"></div>
+
+    <div class="card">
+      <h2>Start Your Learning Journey Today!</h2>
+      <p>Choose a subject, complete lessons, and test your knowledge.</p>
+      <button class="primary" onclick="showPage('signup')">Join LearnSphere</button>
+    </div>
+  </div>
+</section>
+
+<!-- PAGE 2: COURSES -->
+<section id="courses" class="page">
+  <h1>Explore Courses</h1>
+  <p class="subtitle">Find a course that matches your interests.</p>
+
+  <input id="search" placeholder="Search courses..." oninput="renderCourses()">
+
+  <select id="category" onchange="renderCourses()">
+    <option value="All">All Categories</option>
+    <option>Technology</option>
+    <option>Design</option>
+    <option>Business</option>
+    <option>Marketing</option>
+    <option>Personal Growth</option>
+  </select>
+
+  <div id="courseList" class="cards"></div>
+</section>
+
+<!-- PAGE 3: COURSE DETAILS -->
+<section id="details" class="page">
+  <h1 id="courseTitle">Course Details</h1>
+  <p id="courseDescription" class="subtitle"></p>
+
+  <div class="card">
+    <h2>What You Will Learn</h2>
+    <ul id="courseTopics"></ul>
+  </div>
+
+  <h2 style="margin-top:25px">Course Lessons</h2>
+  <div id="lessonList"></div>
+
+  <button class="secondary" onclick="showPage('courses')">← Back to Courses</button>
+</section>
+
+<!-- PAGE 4: LEARNING DASHBOARD -->
+<section id="dashboard" class="page">
+  <h1>My Learning Dashboard</h1>
+  <p class="subtitle">Track your courses and learning progress.</p>
+
+  <div class="stats">
+    <div class="stat"><strong id="enrolledCount">0</strong>Courses Started</div>
+    <div class="stat"><strong id="lessonCount">0</strong>Lessons Completed</div>
+    <div class="stat"><strong id="progressCount">0%</strong>Overall Progress</div>
+    <div class="stat"><strong id="quizCount">0</strong>Quizzes Attempted</div>
+  </div>
+
+  <h2>Your Courses</h2>
+  <div id="myCourses"></div>
+
+  <div class="card">
+    <h3>Weekly Learning Goal</h3>
+    <select id="weeklyGoal" onchange="saveGoal()">
+      <option value="3">3 lessons per week</option>
+      <option value="5" selected>5 lessons per week</option>
+      <option value="7">7 lessons per week</option>
+      <option value="10">10 lessons per week</option>
+    </select>
+    <p id="goalMessage">Your goal is 5 lessons per week.</p>
+  </div>
+</section>
+
+<!-- PAGE 5: QUIZ -->
+<section id="quiz" class="page">
+  <h1>Quick Knowledge Quiz</h1>
+  <p class="subtitle">Answer the questions and check your score.</p>
+
+  <form id="quizForm">
+    <p><b>1. What is HTML used for?</b></p>
+    <label><input type="radio" name="q1" value="a"> Playing music</label><br>
+    <label><input type="radio" name="q1" value="b"> Structuring web pages</label><br>
+    <label><input type="radio" name="q1" value="c"> Editing photos</label><br><br>
+
+    <p><b>2. Which language styles a website?</b></p>
+    <label><input type="radio" name="q2" value="a"> CSS</label><br>
+    <label><input type="radio" name="q2" value="b"> HTML only</label><br>
+    <label><input type="radio" name="q2" value="c"> SQL</label><br><br>
+
+    <p><b>3. What is a variable?</b></p>
+    <label><input type="radio" name="q3" value="a"> A computer screen</label><br>
+    <label><input type="radio" name="q3" value="b"> A keyboard</label><br>
+    <label><input type="radio" name="q3" value="c"> A named place to store a value</label><br><br>
+
+    <p><b>4. What helps you learn a skill?</b></p>
+    <label><input type="radio" name="q4" value="a"> Never practicing</label><br>
+    <label><input type="radio" name="q4" value="b"> Regular practice</label><br>
+    <label><input type="radio" name="q4" value="c"> Avoiding lessons</label><br><br>
+
+    <p><b>5. What is JavaScript often used for?</b></p>
+    <label><input type="radio" name="q5" value="a"> Making web pages interactive</label><br>
+    <label><input type="radio" name="q5" value="b"> Printing books</label><br>
+    <label><input type="radio" name="q5" value="c"> Cleaning a keyboard</label><br><br>
+
+    <button type="submit" class="primary">Submit Quiz</button>
+    <button type="reset" class="secondary" onclick="document.getElementById('quizResult').textContent=''">Try Again</button>
+    <p id="quizResult" class="message"></p>
+  </form>
+</section>
+
+<!-- PAGE 6: ABOUT + INSTRUCTORS -->
+<section id="about" class="page">
+  <h1>About LearnSphere</h1>
+  <p class="subtitle">Making online learning simple and accessible.</p>
+
+  <div class="card">
+    <div class="emoji">🌍</div>
+    <h2>Our Mission</h2>
+    <p>Our mission is to help students and learners develop useful skills through accessible and flexible online education.</p>
+  </div>
+
+  <div class="card">
+    <div class="emoji">🎯</div>
+    <h2>Our Vision</h2>
+    <p>We want to make learning easier for everyone and encourage people to keep improving their knowledge.</p>
+  </div>
+
+  <div class="card">
+    <div class="emoji">💡</div>
+    <h2>Our Values</h2>
+    <p>We believe in creativity, practice, curiosity, and continuous learning.</p>
+  </div>
+
+  <h2 style="margin-top:30px">Meet Our Instructors</h2>
+  <div class="cards">
+    <div class="card">
+      <div class="emoji">👩‍💻</div>
+      <h3>Amna Farooq</h3>
+      <p>Web Development Instructor</p>
+      <p>Helps beginners understand websites and programming.</p>
+    </div>
+    <div class="card">
+      <div class="emoji">🎨</div>
+      <h3>Bilal Ahmed</h3>
+      <p>Design Instructor</p>
+      <p>Teaches layouts, colors, and user-friendly designs.</p>
+    </div>
+    <div class="card">
+      <div class="emoji">📊</div>
+      <h3>Sara Malik</h3>
+      <p>Business Instructor</p>
+      <p>Explains planning, communication, and workplace skills.</p>
+    </div>
+  </div>
+</section>
+
+<!-- PAGE 7: CONTACT -->
+<section id="contact" class="page">
+  <h1>Contact Us</h1>
+  <p class="subtitle">Send us your questions or suggestions.</p>
+
+  <form id="contactForm">
+    <label>Your Name</label>
+    <input id="contactName" required placeholder="Enter your name">
+
+    <label>Email Address</label>
+    <input type="email" required placeholder="Enter your email">
+
+    <label>Subject</label>
+    <select>
+      <option>Course Question</option>
+      <option>Technical Support</option>
+      <option>Feedback</option>
+      <option>Other</option>
+    </select>
+
+    <label>Your Message</label>
+    <textarea required placeholder="Write your message"></textarea>
+
+    <button class="primary">Send Message</button>
+    <p id="contactResult" class="message"></p>
+  </form>
+</section>
+
+<!-- PAGE 8: SIGN IN -->
+<section id="login" class="page">
+  <h1>Sign In</h1>
+  <p class="subtitle">Welcome back to your learning space.</p>
+
+  <form id="loginForm">
+    <label>Email Address</label>
+    <input type="email" required placeholder="you@example.com">
+
+    <label>Password</label>
+    <input type="password" required minlength="4" placeholder="Enter password">
+
+    <button class="primary">Sign In</button>
+    <p id="loginResult" class="message"></p>
+
+    <p>Don't have an account?</p>
+    <button type="button" class="secondary" onclick="showPage('signup')">Create Account</button>
+  </form>
+</section>
+
+<!-- PAGE 9: SIGN UP -->
+<section id="signup" class="page">
+  <h1>Create Your Account</h1>
+  <p class="subtitle">Start your learning journey with us.</p>
+
+  <form id="signupForm">
+    <label>Full Name</label>
+    <input id="signupName" required placeholder="Enter your name">
+
+    <label>Email Address</label>
+    <input type="email" required placeholder="Enter your email">
+
+    <label>Choose Your Interest</label>
+    <select>
+      <option>Technology</option>
+      <option>Design</option>
+      <option>Business</option>
+      <option>Marketing</option>
+      <option>Personal Growth</option>
+    </select>
+
+    <label>Create Password</label>
+    <input type="password" required minlength="4" placeholder="Create a password">
+
+    <button class="primary">Create Account</button>
+    <p id="signupResult" class="message"></p>
+  </form>
+</section>
+
+<!-- PAGE 10: FAQ -->
+<section id="faq" class="page">
+  <h1>Frequently Asked Questions</h1>
+
+  <div class="card">
+    <h3>How do I start a course?</h3>
+    <p>Visit the Courses page, select a course, and start its lessons.</p>
+  </div>
+  <div class="card">
+    <h3>Can I track my progress?</h3>
+    <p>Yes. The My Learning page shows your completed lessons and progress.</p>
+  </div>
+  <div class="card">
+    <h3>Are these courses free?</h3>
+    <p>All courses in this student project are free demonstrations.</p>
+  </div>
+  <div class="card">
+    <h3>Can I take a quiz?</h3>
+    <p>Yes. Visit the Quiz page and submit your answers to see your score.</p>
+  </div>
+  <div class="card">
+    <h3>Will my progress be saved?</h3>
+    <p>Your course progress is saved in your browser on this device.</p>
+  </div>
+</section>
+
+<!-- PAGE 11: PRICING -->
+<section id="pricing" class="page">
+  <h1>Learning Plans</h1>
+  <p class="subtitle">Choose a plan for your learning journey.</p>
+
+  <div class="cards">
+    <div class="card">
+      <div class="emoji">🌱</div>
+      <h2>Starter</h2>
+      <h3>Free</h3>
+      <p>Browse courses and track your progress.</p>
+      <button class="primary" onclick="showPage('courses')">Get Started</button>
+    </div>
+
+    <div class="card">
+      <div class="emoji">🚀</div>
+      <h2>Plus</h2>
+      <h3>Demo Plan</h3>
+      <p>Set goals and build a consistent learning habit.</p>
+      <button class="primary" onclick="alert('Demo plan selected. No payment taken.')">Choose Plus</button>
+    </div>
+
+    <div class="card">
+      <div class="emoji">👥</div>
+      <h2>Team</h2>
+      <h3>Contact Us</h3>
+      <p>Discuss learning plans for a class or group.</p>
+      <button class="secondary" onclick="showPage('contact')">Contact Us</button>
+    </div>
+  </div>
+</section>
+
+<!-- PAGE 12: RESOURCES + BLOG -->
+<section id="resources" class="page">
+  <h1>Learning Resources</h1>
+  <p class="subtitle">Tools and tips to support your study routine.</p>
+
+  <div class="cards">
+    <div class="card">
+      <div class="emoji">📝</div>
+      <h2>Study Planner</h2>
+      <p>Plan your weekly lessons and set learning goals.</p>
+      <button class="primary" onclick="showPage('dashboard')">Set a Goal</button>
+    </div>
+
+    <div class="card">
+      <div class="emoji">📚</div>
+      <h2>Course Library</h2>
+      <p>Find a topic and start building your knowledge.</p>
+      <button class="primary" onclick="showPage('courses')">Browse Courses</button>
+    </div>
+
+    <div class="card">
+      <div class="emoji">🧪</div>
+      <h2>Practice Quiz</h2>
+      <p>Check your knowledge with a short quiz.</p>
+      <button class="primary" onclick="showPage('quiz')">Take Quiz</button>
+    </div>
+  </div>
+
+  <h2 style="margin-top:30px">Learning Blog</h2>
+
+  <div class="card">
+    <h3>1. Build a Study Routine</h3>
+    <p>Choose a regular time to study and set a small daily target. A consistent routine can help you keep learning.</p>
+  </div>
+
+  <div class="card">
+    <h3>2. Practice Regularly</h3>
+    <p>Try questions and activities after each lesson. Practice helps you understand and remember information.</p>
+  </div>
+
+  <div class="card">
+    <h3>3. Set Realistic Goals</h3>
+    <p>Break big goals into smaller tasks and review your progress weekly.</p>
+  </div>
+</section>
+
+<footer>
+  <h2>🎓 LearnSphere</h2>
+  <p>Learn today. Grow tomorrow.</p>
+  <p>© 2026 LearnSphere. All rights reserved.</p>
+  <p style="margin-top:12px"> <strong>Maseera</strong> </p>
+</footer>
+
+<script>
+const courses = [
+  {
+    id: 1,
+    name: "Web Development Basics",
+    category: "Technology",
+    emoji: "💻",
+    description: "Learn HTML, CSS, and JavaScript to build websites.",
+    topics: ["HTML structure", "CSS styling", "JavaScript basics"],
+    lessons: ["Introduction to Websites", "HTML Basics", "CSS Styling", "JavaScript Basics"]
+  },
+  {
+    id: 2,
+    name: "Graphic Design Essentials",
+    category: "Design",
+    emoji: "🎨",
+    description: "Learn color, typography, layouts, and visual design.",
+    topics: ["Color theory", "Typography", "Layout design"],
+    lessons: ["Design Principles", "Colors", "Typography", "Create a Design"]
+  },
+  {
+    id: 3,
+    name: "Digital Marketing",
+    category: "Marketing",
+    emoji: "📱",
+    description: "Explore online marketing and content planning.",
+    topics: ["Marketing channels", "Content planning", "Analytics"],
+    lessons: ["Marketing Basics", "Know Your Audience", "Content Planning", "Analytics"]
+  },
+  {
+    id: 4,
+    name: "Python Programming",
+    category: "Technology",
+    emoji: "🐍",
+    description: "Start programming with variables, loops, and functions.",
+    topics: ["Variables", "Conditions and loops", "Functions"],
+    lessons: ["Python Introduction", "Variables", "Loops", "Functions"]
+  },
+  {
+    id: 5,
+    name: "UI/UX Design",
+    category: "Design",
+    emoji: "🧩",
+    description: "Learn to design useful and easy-to-use interfaces.",
+    topics: ["User research", "Wireframes", "Usability"],
+    lessons: ["UX Basics", "User Research", "Wireframes", "Testing Designs"]
+  },
+  {
+    id: 6,
+    name: "Business Communication",
+    category: "Business",
+    emoji: "💬",
+    description: "Improve professional writing and communication skills.",
+    topics: ["Professional emails", "Presentations", "Teamwork"],
+    lessons: ["Communication Basics", "Writing Emails", "Presentations", "Teamwork"]
+  },
+  {
+    id: 7,
+    name: "Data Analysis",
+    category: "Technology",
+    emoji: "📊",
+    description: "Learn to organize information and understand data.",
+    topics: ["Data organization", "Formulas", "Charts"],
+    lessons: ["Data Basics", "Formulas", "Sort and Filter", "Charts"]
+  },
+  {
+    id: 8,
+    name: "Personal Productivity",
+    category: "Personal Growth",
+    emoji: "⏳",
+    description: "Build better habits and manage your time.",
+    topics: ["Goal setting", "Priorities", "Time management"],
+    lessons: ["Set Goals", "Plan Your Week", "Focus", "Review Progress"]
+  },
+  {
+    id: 9,
+    name: "Social Media Strategy",
+    category: "Marketing",
+    emoji: "📸",
+    description: "Plan content and improve online engagement.",
+    topics: ["Audience", "Content planning", "Engagement"],
+    lessons: ["Choose an Audience", "Content Ideas", "Make a Calendar", "Review Results"]
+  },
+  {
+    id: 10,
+    name: "Entrepreneurship Basics",
+    category: "Business",
+    emoji: "🚀",
+    description: "Explore business ideas and basic planning.",
+    topics: ["Customer needs", "Business ideas", "Simple planning"],
+    lessons: ["Find a Problem", "Know Customers", "Test an Idea", "Business Plan"]
+  }
+];
+
+let progress = {};
+let quizAttempts = 0;
+let currentCourse = null;
+
+try {
+  progress = JSON.parse(localStorage.getItem("learnsphereProgress") || "{}");
+  quizAttempts = Number(localStorage.getItem("learnsphereQuizAttempts") || 0);
+} catch (error) {
+  progress = {};
+}
+
+function saveProgress() {
+  localStorage.setItem("learnsphereProgress", JSON.stringify(progress));
+}
+
+function showPage(id) {
+  document.querySelectorAll(".page").forEach(page => {
+    page.classList.remove("active");
+  });
+
+  const page = document.getElementById(id);
+  if (page) page.classList.add("active");
+
+  window.scrollTo({ top: 0, behavior: "smooth" });
+
+  if (id === "courses") renderCourses();
+  if (id === "dashboard") renderDashboard();
+
+  history.replaceState(null, "", "#" + id);
+}
+
+function courseCard(course) {
+  const done = progress[course.id] || [];
+  const percent = Math.round(done.length / course.lessons.length * 100);
+
+  return `
+    <div class="card">
+      <div class="emoji">${course.emoji}</div>
+      <h3>${course.name}</h3>
+      <p>${course.description}</p>
+      <p><b>Category:</b> ${course.category}</p>
+      <p><b>Progress:</b> ${percent}%</p>
+      <div class="progress"><span style="width:${percent}%"></span></div>
+      <button class="primary" onclick="openCourse(${course.id})">
+        ${percent ? "Continue Learning" : "View Course"}
+      </button>
+    </div>
+  `;
+}
+
+function renderCourses() {
+  const search = (document.getElementById("search")?.value || "").toLowerCase();
+  const category = document.getElementById("category")?.value || "All";
+
+  const filtered = courses.filter(course =>
+    (course.name + " " + course.description).toLowerCase().includes(search) &&
+    (category === "All" || course.category === category)
+  );
+
+  document.getElementById("courseList").innerHTML = filtered.length
+    ? filtered.map(courseCard).join("")
+    : "<p>No courses found. Try another search.</p>";
+}
+
+function openCourse(id) {
+  currentCourse = courses.find(course => course.id === id);
+  if (!currentCourse) return;
+
+  document.getElementById("courseTitle").textContent = currentCourse.name;
+  document.getElementById("courseDescription").textContent = currentCourse.description;
+
+  document.getElementById("courseTopics").innerHTML =
+    currentCourse.topics.map(topic => `<li>${topic}</li>`).join("");
+
+  renderLessons();
+  showPage("details");
+}
+
+function renderLessons() {
+  const done = progress[currentCourse.id] || [];
+
+  document.getElementById("lessonList").innerHTML =
+    currentCourse.lessons.map((lesson, index) => `
+      <div class="lesson">
+        <span>${done.includes(index) ? "✅" : "📖"} ${lesson}</span>
+        <button class="${done.includes(index) ? "secondary" : "primary"}"
+          onclick="toggleLesson(${index})">
+          ${done.includes(index) ? "Undo" : "Complete"}
+        </button>
+      </div>
+    `).join("");
+}
+
+function toggleLesson(index) {
+  if (!progress[currentCourse.id]) progress[currentCourse.id] = [];
+
+  const done = progress[currentCourse.id];
+
+  if (done.includes(index)) {
+    progress[currentCourse.id] = done.filter(item => item !== index);
+  } else {
+    done.push(index);
+  }
+
+  saveProgress();
+  renderLessons();
+  renderDashboard();
+}
+
+function renderDashboard() {
+  const enrolled = Object.keys(progress).filter(id => progress[id].length > 0);
+  let completed = 0;
+  let total = 0;
+
+  enrolled.forEach(id => {
+    const course = courses.find(item => item.id === Number(id));
+    if (course) {
+      completed += progress[id].length;
+      total += course.lessons.length;
+    }
+  });
+
+  document.getElementById("enrolledCount").textContent = enrolled.length;
+  document.getElementById("lessonCount").textContent = completed;
+  document.getElementById("progressCount").textContent =
+    total ? Math.round(completed / total * 100) + "%" : "0%";
+  document.getElementById("quizCount").textContent = quizAttempts;
+
+  document.getElementById("myCourses").innerHTML = enrolled.length
+    ? enrolled.map(id => courseCard(courses.find(c => c.id === Number(id))).join("")).join("")
+    : "<div class='card'>You haven't started a course yet. Visit Courses to begin!</div>";
+
+  const goal = document.getElementById("weeklyGoal").value;
+  document.getElementById("goalMessage").textContent =
+    "Your goal is " + goal + " lessons per week.";
+}
+
+function saveGoal() {
+  const goal = document.getElementById("weeklyGoal").value;
+  localStorage.setItem("learnsphereGoal", goal);
+  document.getElementById("goalMessage").textContent =
+    "Your goal is " + goal + " lessons per week.";
+}
+
+document.getElementById("quizForm").addEventListener("submit", function(event) {
+  event.preventDefault();
+
+  const answers = { q1: "b", q2: "a", q3: "c", q4: "b", q5: "a" };
+  const data = new FormData(this);
+  let score = 0;
+
+  for (const question in answers) {
+    if (data.get(question) === answers[question]) score++;
+  }
+
+  quizAttempts++;
+  localStorage.setItem("learnsphereQuizAttempts", quizAttempts);
+
+  document.getElementById("quizResult").textContent =
+    "Your score is " + score + "/5. " +
+    (score === 5 ? "Excellent work!" :
+     score >= 3 ? "Good effort! Keep practicing." :
+     "Keep learning and try again!");
+
+  renderDashboard();
+});
+
+document.getElementById("contactForm").addEventListener("submit", function(event) {
+  event.preventDefault();
+
+  const name = document.getElementById("contactName").value;
+
+  document.getElementById("contactResult").textContent =
+    "Thank you, " + name + "! Your demo message has been recorded on this screen.";
+
+  this.reset();
+});
+
+document.getElementById("loginForm").addEventListener("submit", function(event) {
+  event.preventDefault();
+  document.getElementById("loginResult").textContent =
+    "Demo sign-in successful! Your dashboard is ready.";
+  showPage("dashboard");
+});
+
+document.getElementById("signupForm").addEventListener("submit", function(event) {
+  event.preventDefault();
+
+  const name = document.getElementById("signupName").value;
+  localStorage.setItem("learnsphereName", name);
+
+  document.getElementById("signupResult").textContent =
+    "Welcome, " + name + "! Your demo profile has been created.";
+});
+
+document.getElementById("homeCourses").innerHTML =
+  courses.slice(0, 3).map(courseCard).join("");
+
+renderCourses();
+renderDashboard();
+
+const savedGoal = localStorage.getItem("learnsphereGoal");
+if (savedGoal) document.getElementById("weeklyGoal").value = savedGoal;
+
+if (location.hash) {
+  const id = location.hash.substring(1);
+  if (document.getElementById(id)) showPage(id);
+}
+</script>
+
+</body>
+</html>
